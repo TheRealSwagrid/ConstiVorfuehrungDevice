@@ -15,7 +15,7 @@ class ConstiVorfuehrungDevice(AbstractVirtualCapability):
         self.currently_searching = False
 
     def SpiralFlight(self, params: dict) -> dict:
-        formatPrint(self, "Commencing Siral Flight!!")
+        #formatPrint(self, "Commencing Siral Flight!!")
         self.currently_searching = True
         while self.currently_searching:
             position = self.invoke_sync("SearchGridGetNextPosition", {})
@@ -23,7 +23,7 @@ class ConstiVorfuehrungDevice(AbstractVirtualCapability):
         return {"SuccessBool": True}
 
     def CancelSpiralFlight(self, params: dict) -> dict:
-        formatPrint(self, "Ending SpiralFlight")
+        #formatPrint(self, "Ending SpiralFlight")
         self.currently_searching = False
         return {"SuccessBool": True}
 
