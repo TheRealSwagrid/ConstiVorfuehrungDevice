@@ -17,9 +17,11 @@ class ConstiVorfuehrungDevice(AbstractVirtualCapability):
     def SpiralFlight(self, params: dict) -> dict:
         #formatPrint(self, "Commencing Siral Flight!!")
         self.currently_searching = True
+        self.invoke_sync("SetArmingStatus", {"SimpleBooleanParameter":True})
         while self.currently_searching:
             position = self.invoke_sync("SearchGridGetNextPosition", {})
             self.invoke_sync("FlyToPosition", position)
+        #self.invoke_sync("SetArmingStatus", {"SimpleBooleanParameter": False})
         return {"SuccessBool": True}
 
     def CancelSpiralFlight(self, params: dict) -> dict:
