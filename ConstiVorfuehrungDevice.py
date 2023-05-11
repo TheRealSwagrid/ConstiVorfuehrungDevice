@@ -25,7 +25,7 @@ class ConstiVorfuehrungDevice(AbstractVirtualCapability):
         while self.currently_searching:
             timer = time.time()
             position = self.invoke_sync("SearchGridGetNextPosition", {})
-            print(f"ACHTUNG: {time.time() - timer}")
+            formatPrint(self, f"ACHTUNG: {time.time() - timer}")
             if position and len(position) > 0:
                 self.invoke_sync("FlyToPosition", position)
         #self.invoke_sync("SetArmingStatus", {"SimpleBooleanParameter": False})
