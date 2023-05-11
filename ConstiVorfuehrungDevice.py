@@ -1,6 +1,7 @@
 import signal
 import sys
 import pickle
+import time
 from threading import Thread
 from time import sleep
 
@@ -22,7 +23,9 @@ class ConstiVorfuehrungDevice(AbstractVirtualCapability):
             self.invoke_sync("SetArmingStatus", {"SimpleBooleanParameter": True})
 
         while self.currently_searching:
+            timer = time.time()
             position = self.invoke_sync("SearchGridGetNextPosition", {})
+            print(f"ACHTUNG: {time.time() - timer}")
             if position and len(position) > 0:
                 self.invoke_sync("FlyToPosition", position)
         #self.invoke_sync("SetArmingStatus", {"SimpleBooleanParameter": False})
